@@ -1,10 +1,8 @@
-class Ticker(start: Boolean, loopsToWaitToSet: Long) {
-  def this(start: Boolean) = this(start, 1)
-  def this() = this(false, 1)
+class Ticker(start: Boolean) {
+  def this() = this(false)
 
   var lastTick: Long = 0
   var lastCurrentMemory: Long = 0
-  var loopsToWait = loopsToWaitToSet
 
   def startTick(): Unit = {
     lastTick = System.nanoTime
@@ -80,10 +78,6 @@ class Ticker(start: Boolean, loopsToWaitToSet: Long) {
 
   def diffMemoryVerbose(): String = {
     ("%.2f" format (diffMemory().toFloat/1048576))+" MB."
-  }
-
-  def setLoopTotal(total: Long): Unit = {
-    loopsToWait = total + 1
   }
 
   if(start){
